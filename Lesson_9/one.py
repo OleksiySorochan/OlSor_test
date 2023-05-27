@@ -80,3 +80,6 @@ admin_dmytro = AdminUsers('dmytro', 'PASSWORD', 'dmytro@mail.com', 30)
 
 print(admin_dmytro.username_info())
 print(ivan.username_info())
+
+ivan.s_name = 'one'
+print(ivan.s_name)
