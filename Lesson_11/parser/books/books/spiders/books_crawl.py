@@ -18,7 +18,7 @@ class BooksCrawlSpider(CrawlSpider):
         item['title'] = response.xpath('//div[contains(@class, "product_main")]/h1/text()').get()
         item['price'] = response.xpath('//div[contains(@class, "product_main")]/p[@class="price_color"]/text()').get()
         item['image'] = "https://books.toscrape.com/" + response.xpath(
-            '//div[@id="product_gallery"]/div[@class="thumbnail"]/div[@class="carousel-inner"]/div[contains(@class="item")]/img/@src').get()
+            '//div[@id="product_gallery"]/div[@class="thumbnail"]/div[@class="carousel-inner"]/div[contains(@class, "item")]/img/@src').get()
         item['description'] = response.xpath('//div[@id="producrt_description"]/../p/text()').get()
         item['opc'] = response.xpath('//th[contains(text(), "UPC")]/../td/text()').get()
 
