@@ -11,4 +11,4 @@ def name_of_manth(number):
             return f"{ex}: веддіть номер місяця, число від 1 до 12"
 
 
-print(name_of_manth(5))
+print(name_of_manth())
