@@ -1,8 +1,9 @@
-# from binarytree import *
+from binarytree import *
 from binarytree import tree
 
-
-
+tree = [8, 3, 10, 1, 6, None, 14, None, None, 4, 7, None, None, 13, None]
+a = build()
+print(a)
 
 # root = Node(3)
 # root.left = Node(5)
@@ -29,12 +30,13 @@ from binarytree import tree
 # print(heap_tree.values)
 # print(heap_tree.properties)
 
-root = tree()
-print(root)
-print(root.properties)
+# root = tree()
+# print(root)
+# print(root.properties)
+#
+# root2 = tree(height=2)
+# print(root2)
 
-root2 = tree(height=2)
-print(root2)
-
-root3 = tree(height=2, is_perfect=True)
-print(root3)
+# root3 = tree(height=4, is_perfect=True)
+# print(root3)
+# print(root3.)

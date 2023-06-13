@@ -17,13 +17,14 @@ class Paralilogram:
         return s_pal
 
 class Square(Paralilogram):
+    def __init__(self, a):
+        self.a = a
+
     def get_area(self):
-        w = self.width
-        l = self.length
-        s_sq = w * l
+        s_sq = self.a ** 2
         return s_sq
 
 pal = Paralilogram(25, 6)
 print(pal.get_area())
-sq = Square(5,5)
+sq = Square(5)
 print(sq.get_area())

@@ -52,6 +52,13 @@ class Node:
         for el in lst:
             self.insert(el)
 
+    # def bild_find_tree(self, lst):
+    #     self.val = lst[0]
+    #     for i in range(1, len(lst)):
+    #         self.insert(i)
+
+
+
     # 2 завдання
     # пошук мінімального  та максимального значення
 
