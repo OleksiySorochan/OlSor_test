@@ -1,5 +1,5 @@
 import random
-from Tree import Node
+from Tree import Node, bild
 
 root = Node(1)
 root.left = Node(2)
@@ -58,6 +58,22 @@ l.right.right.right = Node(None)
 
 # l.display()
 
-a = Node(37)
-a.insert_list([1, 4, 3, 2, 5, 8, 7])
-a.display()
+# a = Node(37)
+# a.insert_list([10, 54, 33, 2, 54, 8, 7])
+# a.find_min()
+# a.find_max()
+# a.display()
+# a.travers_pre_order()
+# print('')
+# a.travers_enter_order()
+# print('')
+# a.travers_in_order()
+# print('')
+# a.travers_width()
+tree = [8, 3, 10, 1, 6, None, 14, None, None, 4, 7, None, None, 13, None]
+# print(tree[4])
+r = bild(tree)
+r.display()
+
+r.del2(6)
+# r.display()

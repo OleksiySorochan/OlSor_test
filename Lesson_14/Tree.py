@@ -32,6 +32,8 @@ class Node:
 
     # Метод додавання нового елементу
     def insert(self, key):
+        # if self.root is None:
+        #     self.root = Node(key)
         if key < self.val:
             if self.left:
                 self.left.insert(key)
@@ -44,50 +46,11 @@ class Node:
             else:
                 self.right = Node(key)
 
-######################################################
-    # 1 завдання
-    # додавання до дерева списком
+
 
     def insert_list(self, lst):
         for el in lst:
             self.insert(el)
-
-    # def bild_find_tree(self, lst):
-    #     self.val = lst[0]
-    #     for i in range(1, len(lst)):
-    #         self.insert(i)
-
-
-
-    # 2 завдання
-    # пошук мінімального  та максимального значення
-
-    _list_val = []
-    def _lst_val(self):
-        self._list_val.append(self.val)
-        if self.left:
-            self.left._lst_val()
-        if self.right:
-            self.right._lst_val()
-
-    def find_min(self):
-        self._lst_val()
-        sort = sorted(self._list_val)
-        return sort[0]
-
-    def find_max(self):
-        self._lst_val()
-        sort = sorted(self._list_val)
-        return sort[-1]
-
-
-    # 3 завдання
-    # Видалення елементів
-
-    # def del_node(self):
-
-
-######################################################
 
     # Друк дерева
     def display(self):
@@ -139,3 +102,59 @@ class Node:
         zipped_lines = zip(left, right)
         lines = [first_line, second_line] + [a + u * ' ' + b for a, b in zipped_lines]
         return lines, n + m + u, max(p, q) + 2, n + u // 2
+
+    ######################################################
+   # 2 завдання
+    # пошук мінімального  та максимального значення
+
+    def find_min(self):
+        if not self.left:
+            return self.val
+        return self.left.find_min()
+
+    def find_max(self):
+        if self.right:
+            return self.val
+        return self.left.find_min()
+
+    # 3 завдання
+    # Видалення елементів
+
+    def del_node(self, key):
+        if key < self.val:
+            if self.left:
+                self.left = self.left.del_node(key)
+        elif key > self.val:
+            if self.right:
+                self.right = self.right.del_node(key)
+        else:
+            if self.left is None:
+                return self.right
+            elif self.right is None:
+                return self.left
+            else:
+                min_node = self.right.find_min()
+                self.val = min_node
+                self.right = self.right.del_node(min_node)
+        return self
+
+
+    # 1 завдання
+    # додавання до дерева списком
+def bild(lst):
+    tree = Node(lst[0])
+    tree.root = Node(lst[0])
+    for i in range(1, len(lst)):
+        if lst[i] is not None:
+            tree.insert(lst[i])
+    return tree
+######################################################
+
+tree = [8, 3, 10, 1, 6, None, 14, None, None, 4, 7, None, None, 13, None]
+t = bild(tree)
+t.display()
+print(f'min: {t.find_min()}')
+print(f'max: {t.find_max()}')
+
+t.del_node(6)
+t.display()
