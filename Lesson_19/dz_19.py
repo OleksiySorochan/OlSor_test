@@ -1,36 +1,26 @@
-import mysql.connector
+import networkx as nx
+import matplotlib.pyplot as plt
 
-mydb = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='root',
-    database='my_first_db'
-)
-# 1 створення нової бази
-mycursor = mydb.cursor()
-mycursor.execute('CREATE DATABASE my_first_db')
+cities_list = []
+with open ('cities.csv') as file:
+    for i in file.readlines():
+        obj = i.replace('\n', '').split(';')
+        obj[2] = int(obj[2])
+        cities_list.append(obj)
 
-# 2 створення в базі таблиці student
-mycursor2 = mydb.cursor()
-mycursor2.execute('CREATE TABLE student(id INT, name VARCHAR(255))')
 
-# 3 створення в базі таблиці employee
-mycursor3 = mydb.cursor()
-mycursor3.execute('CREATE TABLE employee(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), salary INT(6))')
+g = nx.Graph()
+for cities in cities_list:
+    g.add_edge(cities[0], cities[1], weight= cities[2])
 
-# 4 заміна назви стовпичка в таблиці student із id на PRIMARY_KEY
-mycursor4 = mydb.cursor()
-mycursor4.execute('ALTER TABLE student CHANGE id PRIMARY_KEY INT ')
+position = nx.spring_layout(g)
+nx.draw_networkx(g, position)
+plt.title('Міста України')
+plt.show()
 
-#5
-mycursor5 = mydb.cursor()
-sql = 'INSERT INTO student (PRIMARY_KEY, name ) VALUES (%s, %s)'
-val = [('01', 'John')]
-mycursor5.executemany(sql, val)
-mydb.commit()
+print(nx.shortest_path(g, 'Lebedyn', 'Bilhorod-Dnistrovskyi', weight='weight'))
+print(nx.shortest_path_length(g, 'Lebedyn', 'Bilhorod-Dnistrovskyi', weight='weight'))
 
-mycursor6 = mydb.cursor()
-sql2 = 'INSERT INTO employee (id, name, salary ) VALUES (%s, %s, %s)'
-val2 = [('01', 'John', '10000')]
-mycursor6.executemany(sql2, val2)
-mydb.commit()
+print(nx.shortest_path(g, 'Reni', 'Korsun-Shevchenkivskyi', weight= 'weight'))
+print(nx.shortest_path_length(g, 'Reni', 'Korsun-Shevchenkivskyi', weight= 'weight'))
+
