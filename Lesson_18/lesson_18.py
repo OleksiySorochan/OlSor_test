@@ -7,12 +7,12 @@ mydb = mysql.connector.connect(
     database='pds7'
 )
 
-# mycursor = mydb.cursor()
+mycursor = mydb.cursor()
 #
-# mycursor.execute('SHOW DATABASES')
+mycursor.execute('SHOW DATABASES')
 
-# for i in mycursor:
-#     print(i)
+for i in mycursor:
+    print(i)
 
 # mycursor2 = mydb.cursor()
 # mycursor2.execute('SELECT * FROM countries')
@@ -25,7 +25,7 @@ mydb = mysql.connector.connect(
 # mycrsor = mydb.cursor()
 # mycrsor.execute('CREATE DATABASE PDS7_test')
 
-mycursor = mydb.cursor()
+# mycursor = mydb.cursor()
 # mycursor.execute('CREATE TABLE costomers(id INT AUTO_INCREMENT PRIMARY KEY,'
 #                  'name VARCHAR(255), address VARCHAR(255))')
 
@@ -49,5 +49,5 @@ mycursor = mydb.cursor()
 # mydb.commit()
 # print(mycursor.rowcount, 'it was inserted')
 # sql = 'DROP TABLE costomers'
-sql = 'DROP DATABASE pds7_test'
-mycursor.execute(sql)
+# sql = 'DROP DATABASE pds7_test'
+# mycursor.execute(sql)
